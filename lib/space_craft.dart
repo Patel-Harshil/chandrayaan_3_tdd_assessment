@@ -1,4 +1,5 @@
 import 'package:chandrayaan_3_tdd_assessment/enum.dart';
+import 'package:flutter/material.dart';
 
 class SpaceCraft {
   FaceDirection face;
@@ -6,6 +7,7 @@ class SpaceCraft {
   int xPosition;
   int yPosition;
   int zPosition;
+  IconData icon = Icons.arrow_upward;
 
   SpaceCraft.load(
       {required this.face,
@@ -13,6 +15,26 @@ class SpaceCraft {
       required this.xPosition,
       required this.yPosition,
       required this.zPosition});
+
+  void resetCraft() {
+    
+  }
+  void updateIcon() {
+    switch (face) {
+      case FaceDirection.north:
+        icon = Icons.arrow_upward;
+      case FaceDirection.south:
+        icon = Icons.arrow_downward;
+      case FaceDirection.east:
+        icon = Icons.arrow_forward;
+      case FaceDirection.west:
+        icon = Icons.arrow_back;
+      case FaceDirection.up:
+        icon = Icons.circle;
+      case FaceDirection.down:
+        icon = Icons.circle_outlined;
+    }
+  }
 
   void moveLeft() {
     // Face will be rotated 90 degree left
@@ -164,6 +186,7 @@ class SpaceCraft {
         }
         break;
     }
+    updateIcon();
   }
 
   void moveRight() {
@@ -317,6 +340,7 @@ class SpaceCraft {
         }
         break;
     }
+    updateIcon();
   }
 
   void moveUp() {
@@ -350,6 +374,7 @@ class SpaceCraft {
         head = FaceDirection.up;
         break;
     }
+    updateIcon();
   }
 
   void moveDown() {
@@ -383,6 +408,7 @@ class SpaceCraft {
         face = FaceDirection.up;
         break;
     }
+    updateIcon();
   }
 
   void moveForward() {
@@ -410,6 +436,7 @@ class SpaceCraft {
         zPosition--;
         break;
     }
+    updateIcon();
   }
 
   void moveBackward() {
@@ -437,5 +464,6 @@ class SpaceCraft {
         zPosition++;
         break;
     }
+    updateIcon();
   }
 }
